@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform") version "2.0.21"
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 group = "org.github.h4de5ing"
@@ -9,12 +10,11 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-}
 
 kotlin {
     jvmToolchain(19)
     val hostOs = System.getProperty("os.name")
+    println("hostOs = $hostOs")
     val isMingwX64 = hostOs.startsWith("Windows")
     val nativeTarget = when {
         hostOs == "Mac OS X" -> macosX64("native")
@@ -32,7 +32,9 @@ kotlin {
     }
     sourceSets {
         val nativeMain by getting {
-
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+            }
         }
     }
 }
