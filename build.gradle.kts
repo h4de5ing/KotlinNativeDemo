@@ -33,7 +33,7 @@ kotlin {
     sourceSets {
         val nativeMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+                implementation(libs.kotlinx.serialization.json)
             }
         }
     }
